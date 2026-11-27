@@ -9,6 +9,9 @@ When both videos are staged, continue in the SAME session with RUNBOOK_PUBLISH.m
 ## 0. Inputs and state
 - RSS: https://itsmynotebook.com/blog/rss.xml  (items: title, link, description, pubDate)
 - State: `state/posted.json` on the `main` branch of pmyashsagar/TempFiles = list of source slugs already staged or posted. Never reuse a slug.
+- NEW means: `pubDate` is AFTER `state/posted.json` -> `_last_run` (ISO timestamp), and the slug is not already a key in state. Never treat the whole feed as candidates (it holds ~25 old items). If `_last_run` is missing, use the `pubDate` of the newest slug already in state.
+- Record EVERY blog you considered, not only the ones you build: add each non-chosen new slug as `{"status": "considered", "date": "<today>"}` so it is never picked again. Chosen ones become `staged`, then `posted`. At the end of the run set `_last_run` to the newest `pubDate` seen in the feed (not the wall-clock time), so a post published during the run is caught next time.
+- If there are no new posts, stop quietly (no videos, no notification).
 - Pick the 2 best NEW posts (not in state). Prefer: variety of topic/style between the two, posts with a story or concrete steps, newest first. Skip pure product-comparison pages if a story/how-to exists.
 - Read the full article (curl the page, strip tags). EVERY fact in the video must come from the article. No invented numbers, dates or quotes.
 
