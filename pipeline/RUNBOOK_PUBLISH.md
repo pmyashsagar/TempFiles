@@ -1,5 +1,8 @@
 # Publisher runbook (part 2 of the single daily routine; run it right after RUNBOOK_CREATE.md in the same session)
 
+> MODE: read the routine prompt. `MODE=publish-only` (or 'only publish what is already staged'): skip RUNBOOK_CREATE.md entirely, publish every staged `v-*` branch that is not yet posted in state/posted.json (max 2), then stop. In a full run, publish the videos you just staged.
+
+
 Publish every video staged today (max 2), one after the other, with at least 10 minutes between the first and the second video on all platforms. Never post a slug already marked posted in state/posted.json. If nothing is staged, stop.
 
 ## 1. Find and verify

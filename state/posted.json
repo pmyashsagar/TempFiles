@@ -1,1 +1,7 @@
-{ "samuel-pepys-diary": { "status": "staged", "branch": "media/2026-11-28-pepys", "video_path": "media/2026-11-28-pepys/video.mp4", "note": "first post: 2026-11-28 07:45 IST" } }
+{
+ "samuel-pepys-diary": {
+  "status": "staged",
+  "branch": "v-20261128-pepys",
+  "note": "approved by the owner; waiting to be published"
+ }
+}

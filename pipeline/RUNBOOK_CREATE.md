@@ -1,5 +1,8 @@
 # Daily creator runbook (part 1 of the single daily routine, unattended)
 
+> MODE: read the routine prompt. `MODE=create-only` (or 'do not post anywhere'): build and stage, then stop. Otherwise continue with RUNBOOK_PUBLISH.md after staging.
+
+
 Goal: from the It's My Notebook blog RSS, pick 2 NEW posts, make one 9:16 video (90-120 s) for each, stage them for publishing.
 When both videos are staged, continue in the SAME session with RUNBOOK_PUBLISH.md, which posts them and deletes them. You never post anything in this runbook.
 
