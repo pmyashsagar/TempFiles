@@ -1,7 +1,10 @@
 {
  "samuel-pepys-diary": {
-  "status": "staged",
-  "branch": "v-20261128-pepys",
-  "note": "approved by the owner; waiting to be published"
+  "status": "posted",
+  "date": "2026-11-27",
+  "branch": "v-20261128-pepys (deleted)",
+  "instagram": {"media_id": "18040763447894217", "permalink": "https://www.instagram.com/reel/DgPQT4uh3aj/"},
+  "youtube": {"via": "metricool", "post_id": 444062989, "scheduled_for": "2026-11-27T14:06+05:30", "status": "PENDING at creation"},
+  "facebook": {"post_id": "1470896674442200"}
  }
 }
