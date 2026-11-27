@@ -43,4 +43,4 @@ for b in $branches; do
     n=$((n+1))
   fi
 done
-echo "cleanup done: $n branch(es) ${DRY:+(dry run)}"
+if [ "$DRY" = 1 ]; then echo "cleanup done: $n branch(es) would be deleted (dry run)"; else echo "cleanup done: $n branch(es) matched"; fi
