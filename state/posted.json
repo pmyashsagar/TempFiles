@@ -49,10 +49,22 @@
   }
  },
  "winter-solstice-journal": {
-  "status": "staged",
+  "status": "posted",
   "date": "2026-11-27",
-  "branch": "v-20261127-winter-solstice-journal",
-  "order": 2
+  "branch": "v-20261127-winter-solstice-journal (deletion attempted, see notes)",
+  "instagram": {
+   "media_id": "18119023901273473",
+   "permalink": "https://www.instagram.com/reel/DgPjuBJBM4m/"
+  },
+  "youtube": {
+   "via": "metricool",
+   "post_id": 444233132,
+   "scheduled_for": "2026-11-27T16:54+05:30",
+   "status": "PENDING at creation"
+  },
+  "facebook": {
+   "post_id": "1532221875548934"
+  }
  },
  "voice-journaling-beginners": {
   "status": "considered",
