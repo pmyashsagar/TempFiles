@@ -15,6 +15,16 @@ Publish every video staged today (max 2), one after the other, with at least 10 
 3. Facebook via Zapier: execute_zapier_write_action selected_api=FacebookV2CLIAPI action=page_video params {page:"1526608943860835" (Its my notebook), title: meta.facebook_title, source: video_url, description: meta.facebook_description}.
 Use the caption, hashtags and metadata exactly as in meta.json.
 
+## 2b. Fallback chain (owner-approved): Zernio is the last resort for Instagram and YouTube
+Order per platform. Move to the next ONLY after the verify step in 3a shows the previous one did not publish, or it failed definitively.
+- Instagram: 1) Windsor  2) Zernio.   (Facebook stays Zapier only.)
+- YouTube:   1) Metricool  2) Zapier `upload_video` (only if Metricool credits are exhausted/quota error)  3) Zernio.
+Zernio connector (tools `mcp__Zernio__*`; load schemas with ToolSearch `select:mcp__Zernio__posts_create,mcp__Zernio__posts_list,mcp__Zernio__posts_get`):
+- Instagram account id `6b0980a733e982d064533e8b` (@itsmynotebookdotcom), YouTube account id `6b098156cc1f25f7624e53b8` (channel "itsmynotebook").
+- Post with `posts_create` platform=instagram|youtube, account_id as above, `publish_now=true`, `media_urls`=the public raw.githubusercontent.com video URL, `content`=meta caption (instagram) or youtube.description (youtube), `title`=youtube.title for YouTube.
+- Before a Zernio post, and after any timeout/unknown result, check `posts_list` (status published/scheduled/failed) for the same caption/title; never create a duplicate. Record `"via":"zernio"` and the Zernio post id in state/posted.json.
+- If the Zernio tools are not available in the session (connector not attached to the routine), say so in the failure notification.
+
 ## 3. Verify, then delete
 
 ### 3a. NEVER blindly retry a post (a timeout is NOT a failure)
