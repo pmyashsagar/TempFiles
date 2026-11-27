@@ -1,0 +1,22 @@
+# Copy this file to .github/workflows/cleanup.yml in the TempFiles repository (GitHub web UI: Add file > Create new file).
+# Runs daily and deletes posted video branches so the repo stays small. Needs no secrets: it uses the built-in GITHUB_TOKEN.
+name: cleanup-posted-video-branches
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 09:00 IST, after the morning run
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Delete posted v-* branches (older than 1 day)
+        run: |
+          git config user.name "cleanup-bot"
+          git config user.email "cleanup-bot@users.noreply.github.com"
+          pipeline/cleanup_branches.sh
