@@ -1,7 +1,7 @@
-# Daily creator runbook (runs ~03:00 IST, unattended)
+# Daily creator runbook (part 1 of the single daily routine, unattended)
 
 Goal: from the It's My Notebook blog RSS, pick 2 NEW posts, make one 9:16 video (90-120 s) for each, stage them for publishing.
-The publisher runbook (RUNBOOK_PUBLISH.md) posts them later and deletes them. You never post anything in this runbook.
+When both videos are staged, continue in the SAME session with RUNBOOK_PUBLISH.md, which posts them and deletes them. You never post anything in this runbook.
 
 ## 0. Inputs and state
 - RSS: https://itsmynotebook.com/blog/rss.xml  (items: title, link, description, pubDate)
@@ -46,13 +46,14 @@ Brand cues (always): cream paper #FAF4E6, warm ink #302A24, mustard #F1BF4E, tom
 ## 6. Stage for publishing
 For each video: branch `v-YYYYMMDD-<slug>` (no slash) in pmyashsagar/TempFiles containing ONLY `video.mp4` (master 1080x1920) and `meta.json`:
 ```
-{ "slug": "...", "source_url": "https://itsmynotebook.com/blog/...", "slot": "am" | "pm",
+{ "slug": "...", "source_url": "https://itsmynotebook.com/blog/...", "order": 1 | 2,
   "instagram_caption": "<=2200 chars: hook, 3-6 short lines, CTA to itsmynotebook.com, blank line, 12-15 hashtags",
   "facebook_title": "...", "facebook_description": "caption text + link + hashtags",
   "youtube": { "title": "<=95 chars + #Shorts", "description": "...link...hashtags", "tags": ["..."], "category": "EDUCATION" },
   "qa": { "passed": true, "notes": "..." } }
 ```
-Slot am = the first video (published 07:45 IST), pm = the second (19:45 IST). Push the branches. Update `state/posted.json` on main with both slugs (status "staged"). Do NOT keep videos on main.
+order 1 = first video, order 2 = second video. Push the branches (this needs the TempFiles repository attached to the routine with push access; if git push is refused, stop, email/notify the owner and do not post). Update `state/posted.json` on main with both slugs (status "staged"). Do NOT keep videos on main.
+If you only manage to make one good video, stage and post one; never post a video that failed QA.
 
 ## 7. If anything fails
 Do not stage a video that failed QA. If the Gmail connector is available in this session, email the account owner (use the Gmail profile address) a short note saying what failed; otherwise write the failure to `state/last_error.txt` on main. Never post anything from this runbook.
