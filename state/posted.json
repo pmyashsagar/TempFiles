@@ -17,7 +17,7 @@
    "post_id": "1470896674442200"
   }
  },
- "_last_run": "2026-11-27T01:57:05Z",
+ "_last_run": "2026-11-27T10:25:15Z",
  "december-journaling-prompts": {
   "status": "considered",
   "date": "2026-11-27"
@@ -27,6 +27,26 @@
   "date": "2026-11-27"
  },
  "gift-ideas-journal": {
+  "status": "considered",
+  "date": "2026-11-27"
+ },
+ "vindolanda-tablets-birthday-invitation": {
+  "status": "staged",
+  "date": "2026-11-27",
+  "branch": "v-20261127-vindolanda-tablets-birthday-invitation",
+  "order": 1
+ },
+ "winter-solstice-journal": {
+  "status": "staged",
+  "date": "2026-11-27",
+  "branch": "v-20261127-winter-solstice-journal",
+  "order": 2
+ },
+ "voice-journaling-beginners": {
+  "status": "considered",
+  "date": "2026-11-27"
+ },
+ "family-traditions-journal": {
   "status": "considered",
   "date": "2026-11-27"
  }
