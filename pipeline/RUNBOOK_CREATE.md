@@ -46,11 +46,12 @@ Brand cues (always): cream paper #FAF4E6, warm ink #302A24, mustard #F1BF4E, tom
 
 ## 5. Build and QA
 - Render: `node $LIB/core/render/events.mjs <slug>`, `python mix.py`, `node $LIB/core/render/video.mjs <slug> --fps 30 --workers 3 --size 1080x1920 --out <slug>/out/video.mp4`, `sh $LIB/core/render/mux.sh out/video.mp4 out/mix.wav master.mp4 30 0`.
+- COMPRESS (mandatory, after the master passes QA): `pipeline/compress.sh master.mp4 video.mp4` makes the file to stage. It keeps full 1080x1920, re-encodes with x264 (slow, animation tune) and a 128k voice track, and accepts only a result that is <= 9.5 MB with SSIM >= 0.985 versus the master (typical: 8-9.3 MB, was 22-24 MB). If it exits non-zero, do not stage (notify). The staged `video.mp4` is the COMPRESSED file; keep the master out of the repo. Then re-check the compressed file: duration within 0.5 s of the master, 1080x1920, loudness still -14.5..-13.5 LUFS.
 - QA (all must pass, else do not stage): contact sheet of stills every ~8 s and at every scene start/mid: no overlapping text/drawings, no cropped text, no label-in-drawing; readcheck OK; `blackdetect` only at transitions; loudness within -14.5..-13.5 LUFS; duration 90-120 s; voice clearly audible over everything else.
 - Fix and re-render once if QA fails; if it still fails, do not stage.
 
 ## 6. Stage for publishing
-For each video: branch `v-YYYYMMDD-<slug>` (no slash) in pmyashsagar/TempFiles containing ONLY `video.mp4` (master 1080x1920) and `meta.json`:
+For each video: branch `v-YYYYMMDD-<slug>` (no slash) in pmyashsagar/TempFiles containing ONLY `video.mp4` (the compressed 1080x1920 file, under 9.5 MB) and `meta.json`:
 ```
 { "slug": "...", "source_url": "https://itsmynotebook.com/blog/...", "order": 1 | 2,
   "instagram_caption": "<=2200 chars: hook, 3-6 short lines, CTA to itsmynotebook.com, blank line, 12-15 hashtags",
