@@ -1,6 +1,6 @@
 # Daily creator runbook (part 1 of the single daily routine, unattended)
 
-> MODE: read the routine prompt. `MODE=create-only` (or 'do not post anywhere'): build and stage, then stop. Otherwise continue with RUNBOOK_PUBLISH.md after staging.
+> DEFAULT = FULL RUN, END TO END: build and stage the videos, then CONTINUE IN THE SAME SESSION with RUNBOOK_PUBLISH.md and post them. Staging is only an intermediate step, never the end of a normal run. Stop after staging ONLY if the routine prompt literally says `MODE=create-only`; that flag exists solely for one-off debugging and must never appear in the daily routine prompt.
 
 
 Goal: from the It's My Notebook blog RSS, pick 2 NEW posts, make one 9:16 video (90-120 s) for each, stage them for publishing.
