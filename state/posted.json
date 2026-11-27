@@ -31,10 +31,22 @@
   "date": "2026-11-27"
  },
  "vindolanda-tablets-birthday-invitation": {
-  "status": "staged",
+  "status": "posted",
   "date": "2026-11-27",
-  "branch": "v-20261127-vindolanda-tablets-birthday-invitation",
-  "order": 1
+  "branch": "v-20261127-vindolanda-tablets-birthday-invitation (not deleted: branch deletion refused)",
+  "instagram": {
+   "media_id": "18019190300993514",
+   "permalink": "https://www.instagram.com/reel/DgPic9RzXyB/"
+  },
+  "youtube": {
+   "via": "metricool",
+   "post_id": 444221410,
+   "scheduled_for": "2026-11-27T16:41+05:30",
+   "status": "PENDING at creation"
+  },
+  "facebook": {
+   "post_id": "1452526630378058"
+  }
  },
  "winter-solstice-journal": {
   "status": "staged",
