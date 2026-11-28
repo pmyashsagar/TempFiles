@@ -1,0 +1,4 @@
+{
+ "_note": "Per-post Zernio metrics, keyed by platformPostId. Filled by the daily agent (RUNBOOK_CREATE section 0b).",
+ "posts": {}
+}
