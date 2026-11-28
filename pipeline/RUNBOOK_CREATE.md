@@ -67,7 +67,7 @@ For each video: branch `v-YYYYMMDD-<slug>` (no slash) in pmyashsagar/TempFiles c
 { "slug": "...", "source_url": "https://itsmynotebook.com/blog/...", "order": 1 | 2,
   "instagram_caption": "<=2200 chars: hook, 3-6 short lines, CTA to itsmynotebook.com, blank line, 12-15 hashtags",
   "facebook_title": "...", "facebook_description": "caption text + link + hashtags",
-  "youtube": { "title": "<=95 chars + #Shorts", "description": "...link...hashtags", "tags": ["..."], "category": "EDUCATION" },
+  "youtube": { "title": "<=95 chars + #Shorts", "description": "...link...hashtags", "tags": ["..."], "category": "EDUCATION", "ai_generated": true },
   "qa": { "passed": true, "notes": "..." } }
 ```
 order 1 = first video, order 2 = second video. Push the branches (this needs the TempFiles repository attached to the routine with push access; if git push is refused, stop, email/notify the owner and do not post). Update `state/posted.json` on main with both slugs (status "staged"). Do NOT keep videos on main.
