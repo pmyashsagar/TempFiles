@@ -17,7 +17,7 @@
    "post_id": "1470896674442200"
   }
  },
- "_last_run": "2026-11-27T10:25:15Z",
+ "_last_run": "2026-11-28T01:56:20Z",
  "december-journaling-prompts": {
   "status": "considered",
   "date": "2026-11-27"
@@ -73,5 +73,51 @@
  "family-traditions-journal": {
   "status": "considered",
   "date": "2026-11-27"
+ },
+ "interstitial-journaling": {
+  "status": "considered",
+  "date": "2026-11-28"
+ },
+ "giving-tuesday-kindness-journal": {
+  "status": "considered",
+  "date": "2026-11-28"
+ },
+ "darwin-notebook-i-think": {
+  "status": "posted",
+  "date": "2026-11-28",
+  "branch": "v-20261128-darwin-notebook-i-think (not deleted: branch deletion refused)",
+  "instagram": {
+   "via": "windsor",
+   "media_id": "17998951455063361",
+   "permalink": "https://www.instagram.com/reel/DgRMRPFiTqq/"
+  },
+  "youtube": {
+   "via": "zapier (Metricool post 445085446 errored: account limit)",
+   "video_id": "irj8BwbDEXE",
+   "url": "https://www.youtube.com/watch?v=irj8BwbDEXE",
+   "status": "uploaded, public"
+  },
+  "facebook": {
+   "post_id": "1480869737326117"
+  }
+ },
+ "hanukkah-journal": {
+  "status": "posted",
+  "date": "2026-11-28",
+  "branch": "v-20261128-hanukkah-journal (not deleted: branch deletion refused)",
+  "instagram": {
+   "via": "zernio",
+   "post_id": "6b0a4477a02652264ee48ef7",
+   "note": "Windsor create_video_post timed out and the reel never appeared in 6 checks over ~16 min; posted via Zernio (@itsmynotebookdotcom). If a Windsor reel appears later it is a duplicate to remove."
+  },
+  "youtube": {
+   "via": "zapier (Metricool post 445090711 errored: account limit)",
+   "video_id": "mMNcmE3G3_4",
+   "url": "https://www.youtube.com/watch?v=mMNcmE3G3_4",
+   "status": "uploaded, public"
+  },
+  "facebook": {
+   "post_id": "1684846889697050"
+  }
  }
 }
