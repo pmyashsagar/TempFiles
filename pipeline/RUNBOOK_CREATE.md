@@ -58,13 +58,19 @@ Brand cues (always): cream paper #FAF4E6, warm ink #302A24, mustard #F1BF4E, tom
 ## 5. Build and QA
 - Render: `node $LIB/core/render/events.mjs <slug>`, `python mix.py`, `node $LIB/core/render/video.mjs <slug> --fps 30 --workers 3 --size 1080x1920 --out <slug>/out/video.mp4`, `sh $LIB/core/render/mux.sh out/video.mp4 out/mix.wav master.mp4 30 0`.
 - COMPRESS (mandatory, after the master passes QA): `pipeline/compress.sh master.mp4 video.mp4` makes the file to stage. It keeps full 1080x1920, re-encodes with x264 (slow, animation tune) and a 128k voice track, and accepts only a result that is <= 9.5 MB with SSIM >= 0.985 versus the master (typical: 8-9.3 MB, was 22-24 MB). If it exits non-zero, do not stage (notify). The staged `video.mp4` is the COMPRESSED file; keep the master out of the repo. Then re-check the compressed file: duration within 0.5 s of the master, 1080x1920, loudness still -14.5..-13.5 LUFS.
+- COVER (mandatory, one per video): `pipeline/cover/make_cover.mjs` builds a 1080x1920 JPEG on the brand's cream dotted paper: small tag line, a big Kalam hook (max 3 lines of 18 characters, one key phrase highlighted in mustard), a taped "photo" of the video's own artwork, and the brand line. Example: `pipeline/cover/example_vindolanda.jpg`.
+  1. Pick the frame: from the QA contact sheet choose a time when the scene's PICTURE is finished and is the most recognisable image of the story (a person, object or place, not an empty scene, not a closing/CTA scene). `ffmpeg -ss <t> -i master.mp4 -frames:v 1 frame.png` (full 1080x1920 frame).
+  2. Choose the crop: the picture area is y 420..1320 by default; tighten with `--crop y0,y1` so no title strip, caption slip or half-cut object enters the picture (look at the result).
+  3. Hook text: not a copy of the caption or the video's first line; a curiosity or promise in plain words that reads at 110 px wide (e.g. "A birthday invite|that lasted|2,000 years"); `--highlight` = the 1-3 words that carry the hook; `--tag` = topic label in capitals.
+  4. Run: `node pipeline/cover/make_cover.mjs --frame frame.png --hook "..|..|.." --highlight ".." --tag ".." --crop 400,1290 --out cover.jpg` (needs `require('playwright')`, preinstalled; fetches Kalam/Patrick Hand from Google Fonts). The script checks the safe band (all content inside y 240..1680, the Instagram 3:4 grid crop), overlaps and line width, and exits non-zero with PROBLEMS if any fail: fix and re-run.
+  5. LOOK at cover.jpg (Read the image): no overlaps, no cropped objects, text readable, art relevant. Also view it at 216x384 to confirm it reads small. If it fails twice, stage without a cover (`"cover": null`) and say so in the notification; never block the video on the cover.
 - QA (all must pass, else do not stage): contact sheet of stills every ~8 s and at every scene start/mid: no overlapping text/drawings, no cropped text, no label-in-drawing; readcheck OK; `blackdetect` only at transitions; loudness within -14.5..-13.5 LUFS; duration 90-120 s; voice clearly audible over everything else.
 - Fix and re-render once if QA fails; if it still fails, do not stage.
 
 ## 6. Stage for publishing
-For each video: branch `v-YYYYMMDD-<slug>` (no slash) in pmyashsagar/TempFiles containing ONLY `video.mp4` (the compressed 1080x1920 file, under 9.5 MB) and `meta.json`:
+For each video: branch `v-YYYYMMDD-<slug>` (no slash) in pmyashsagar/TempFiles containing ONLY `video.mp4` (the compressed 1080x1920 file, under 9.5 MB), `cover.jpg` (see COVER) and `meta.json` and `meta.json`:
 ```
-{ "slug": "...", "source_url": "https://itsmynotebook.com/blog/...", "order": 1 | 2,
+{ "slug": "...", "source_url": "https://itsmynotebook.com/blog/...", "order": 1 | 2, "cover": "cover.jpg",
   "instagram_caption": "<=2200 chars: hook, 3-6 short lines, CTA to itsmynotebook.com, blank line, 12-15 hashtags",
   "facebook_title": "...", "facebook_description": "caption text + link + hashtags",
   "youtube": { "title": "<=95 chars + #Shorts", "description": "...link...hashtags", "tags": ["..."], "category": "EDUCATION", "ai_generated": true },

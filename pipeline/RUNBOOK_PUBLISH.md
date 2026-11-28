@@ -15,6 +15,16 @@ Publish every video staged today (max 2), one after the other, with at least 10 
 3. Facebook via Zapier: execute_zapier_write_action selected_api=FacebookV2CLIAPI action=page_video params {page:"1526608943860835" (Its my notebook), title: meta.facebook_title, source: video_url, description: meta.facebook_description}.
 Use the caption, hashtags and metadata exactly as in meta.json.
 
+## 2a. COVER IMAGE (every Reel / Short gets one; skip silently only if `meta.cover` is null)
+Public cover URL: `https://raw.githubusercontent.com/pmyashsagar/TempFiles/<branch>/cover.jpg` (check HTTP 200, JPEG, under 8 MB, like the video). Pass it on every route:
+- Zernio Instagram: use `posts_create_post` (not the simple `posts_create`) with `media_items=[{"type":"video","url":<video>,"instagramThumbnail":<cover>}]`.
+- Zernio YouTube: in the same `posts_create_post` call, `media_items=[{"type":"video","url":<video>,"thumbnail":<cover>}]` (YouTube only shows a custom Shorts thumbnail on verified channels; harmless otherwise).
+- Windsor Instagram: `create_video_post` param `cover_url` = the cover URL.
+- Metricool YouTube: `info.videoThumbnailUrl` = the cover URL.
+- Zapier YouTube `upload_video`: `thumbnail` = the cover URL.
+- Facebook (Zapier `page_video`): no cover field; nothing to pass.
+If a cover URL is rejected, post again WITHOUT the cover only after the verify step shows the first attempt did not publish. Record `"cover": true|false` per platform in state/posted.json.
+
 ## 2b. PLATFORM ORDER (owner-decided 2026-11-28) and fallbacks
 Try in this order. Move to the next ONLY after the verify step in 3a shows the previous one did not publish, or it failed definitively.
 - Instagram: 1) Zernio  2) Windsor.
